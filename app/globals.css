@@ -16,20 +16,20 @@
   }
 }
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 0px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #4a90e2;
-  border-radius: 6px;
+  background: #3d3d3d;
+  border-radius: 0px;
 }
 
 body {
-  scrollbar-width: thin; 
-  scrollbar-color: #4a90e2 transparent;
+  scrollbar-width: none; 
+  scrollbar-color: #020f1d transparent;
 }
 
 body::-webkit-scrollbar-thumb {
-  background: #4a90e2;
-  border-radius: 6px;
+  background: #010a14;
+  border-radius: 0px;
 }
