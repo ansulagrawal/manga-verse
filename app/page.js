@@ -3,19 +3,16 @@ import React from 'react';
 import Crousel from '@/components/Crousel';
 import axios from 'axios';
 
-// async function getData() {
-//   try {
-//     const res = await axios.get(`${process.env.BASE_URL}/api/most-popular`);
-//     return { data: res.data.data};
-//   }
-//   catch(exept) {
-//     return { data: []}
-//   }
-// }
-
 async function Home() {
-  // const data = (await getData()) || [];
-  const data=[]
+  const getData = async () => {
+    try {
+      const res = await axios.get(`${process.env.BASE_URL}/api/most-popular`);
+      return { data: res.data.data };
+    } catch (exept) {
+      return { data: [] };
+    }
+  };
+  const { data } = (await getData()) || [];
   return (
     <>
       {/* --------------- Most Popular ---------------------- */}
@@ -29,7 +26,7 @@ async function Home() {
               desc: i?.attributes?.description?.en,
               genere: i.attributes.tags.filter(tag => tag.attributes.group === 'genre').map(tag => tag.attributes.name.en),
               author: i.relationships?.find(t => t.type === 'author')?.attributes?.name,
-              imageUrl: i.relationships?.find(t=> t.type === 'cover_art')?.attributes?.fileName,
+              imageUrl: i.relationships?.find(t => t.type === 'cover_art')?.attributes?.fileName,
               id: i.id,
             }}
           />
@@ -47,7 +44,7 @@ async function Home() {
               desc: i?.attributes?.description?.en,
               genere: i.attributes.tags.filter(tag => tag.attributes.group === 'genre').map(tag => tag.attributes.name.en),
               author: i.relationships?.filter(t => t.type === 'author')?.[0]?.attributes?.name,
-              imageUrl: i.relationships?.find(t=> t.type === 'cover_art')?.attributes?.fileName,
+              imageUrl: i.relationships?.find(t => t.type === 'cover_art')?.attributes?.fileName,
               id: i.id,
               time: '2023-10-19T07:29:30+00:00',
               volume: 10,
@@ -69,7 +66,7 @@ async function Home() {
               desc: i?.attributes?.description?.en,
               genere: i.attributes.tags.filter(tag => tag.attributes.group === 'genre').map(tag => tag.attributes.name.en),
               author: i.relationships?.filter(t => t.type === 'author')?.[0]?.attributes?.name,
-              imageUrl: i.relationships?.find(t=> t.type === 'cover_art')?.attributes?.fileName,
+              imageUrl: i.relationships?.find(t => t.type === 'cover_art')?.attributes?.fileName,
               id: i.id,
               height: '100px',
               imageMinWidth: '100px',
