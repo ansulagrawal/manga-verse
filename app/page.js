@@ -4,8 +4,13 @@ import Crousel from '@/components/Crousel';
 import axios from 'axios';
 
 async function getData() {
-  const res = await axios.get(`${process.env.BASE_URL}/api/most-popular`);
-  return res.data.data;
+  try {
+    const res = await axios.get(`${process.env.BASE_URL}/api/most-popular`);
+    return { data: res.data.data};
+  }
+  catch(exept) {
+    return { data: []}
+  }
 }
 
 async function Home() {
