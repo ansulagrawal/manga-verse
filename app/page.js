@@ -15,7 +15,7 @@ import axios from 'axios';
 
 async function Home() {
   // const data = (await getData()) || [];
-
+  const data=[]
   return (
     <>
       {/* --------------- Most Popular ---------------------- */}
