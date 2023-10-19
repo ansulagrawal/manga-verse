@@ -14,7 +14,7 @@ async function getData() {
 }
 
 async function Home() {
-  const data = (await getData()) || [];
+  // const data = (await getData()) || [];
 
   return (
     <>
