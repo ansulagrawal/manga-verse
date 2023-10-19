@@ -56,7 +56,7 @@ async function Home() {
       </Crousel>
 
       {/* --------------- Seasonal ---------------------- */}
-      <h3 className="text-xl font-bold my-2">Seasonal</h3>
+      <h3 className="text-xl font-bold my-2">Seasonal Update</h3>
       <Crousel autoPlay>
         {data.map(i => (
           <Card
