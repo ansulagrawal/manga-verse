@@ -22,7 +22,7 @@ async function Home() {
           <Card
             key={i.id}
             {...{
-              title: i?.attributes?.title?.en,
+              title: i?.attributes?.title?.en || i?.attributes?.title[Object.keys(popularData?.[0]?.attributes?.title)?.[0]] || i?.attributes?.altTitles?.[0]?.[Object.keys(i?.attributes?.altTitles?.[0])?.[0]],
               desc: i?.attributes?.description?.en,
               genere: i.attributes.tags.filter(tag => tag.attributes.group === 'genre').map(tag => tag.attributes.name.en),
               author: i.relationships?.find(t => t.type === 'author')?.attributes?.name,
@@ -40,10 +40,10 @@ async function Home() {
           <Card
             key={i}
             {...{
-              title: i?.attributes?.title?.en,
+              title: i?.attributes?.title?.en || i?.attributes?.title[Object.keys(popularData?.[0]?.attributes?.title)?.[0]] || i?.attributes?.altTitles?.[0]?.[Object.keys(i?.attributes?.altTitles?.[0])?.[0]],
               desc: i?.attributes?.description?.en,
               genere: i.attributes.tags.filter(tag => tag.attributes.group === 'genre').map(tag => tag.attributes.name.en),
-              author: i.relationships?.filter(t => t.type === 'author')?.[0]?.attributes?.name,
+              author: i.relationships?.find(t => t.type === 'author')?.attributes?.name,
               imageUrl: i.relationships?.find(t => t.type === 'cover_art')?.attributes?.fileName,
               id: i.id,
               time: i.attributes?.updatedAt,
@@ -62,10 +62,10 @@ async function Home() {
           <Card
             key={i}
             {...{
-              title: i?.attributes?.title?.en,
+              title: i?.attributes?.title?.en || i?.attributes?.title[Object.keys(popularData?.[0]?.attributes?.title)?.[0]] || i?.attributes?.altTitles?.[0]?.[Object.keys(i?.attributes?.altTitles?.[0])?.[0]],
               desc: i?.attributes?.description?.en,
               genere: i.attributes.tags.filter(tag => tag.attributes.group === 'genre').map(tag => tag.attributes.name.en),
-              author: i.relationships?.filter(t => t.type === 'author')?.[0]?.attributes?.name,
+              author: i.relationships?.find(t => t.type === 'author')?.attributes?.name,
               imageUrl: i.relationships?.find(t => t.type === 'cover_art')?.attributes?.fileName,
               id: i.id,
               height: '100px',
