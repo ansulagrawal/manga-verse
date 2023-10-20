@@ -35,7 +35,7 @@ async function Home() {
 
       {/* --------------- Latest Updeted ---------------------- */}
       <h3 className="text-xl font-bold my-2">Latest Updeted</h3>
-      <Crousel>
+      <Crousel autoPlay>
         {recentlyUdated.map(i => (
           <Card
             key={i}
