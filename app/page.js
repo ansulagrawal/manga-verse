@@ -10,8 +10,8 @@ async function Home() {
   };
 
   const popularData = await getData('api/most-popular');
-  // const seasonalData = await getData('api/seasonal');
-  // const recentlyUdated = await getData('api/latest-updates');
+  const seasonalData = await getData('api/seasonal');
+  const recentlyUdated = await getData('api/latest-updates');
 
   return (
     <>
@@ -36,7 +36,7 @@ async function Home() {
       {/* --------------- Latest Updeted ---------------------- */}
       <h3 className="text-xl font-bold my-2">Latest Updeted</h3>
       <Crousel>
-        {popularData.map(i => (
+        {recentlyUdated.map(i => (
           <Card
             key={i}
             {...{
@@ -58,7 +58,7 @@ async function Home() {
       {/* --------------- Seasonal ---------------------- */}
       <h3 className="text-xl font-bold my-2">Seasonal Update</h3>
       <Crousel autoPlay>
-        {popularData.map(i => (
+        {seasonalData.map(i => (
           <Card
             key={i}
             {...{
