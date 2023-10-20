@@ -4,21 +4,21 @@ import Crousel from '@/components/Crousel';
 import axios from 'axios';
 
 async function Home() {
-  const getData = async () => {
-    try {
-      const res = await axios.get(`${process.env.BASE_URL}/api/most-popular`);
-      return { data: res.data.data };
-    } catch (exept) {
-      return { data: [] };
-    }
+  const getData = async url => {
+    const popularRes = await axios.get(`${process.env.BASE_URL}/${url}`);
+    return popularRes?.data?.data || [];
   };
-  const { data } = (await getData()) || [];
+
+  const popularData = await getData('api/most-popular');
+  const seasonalData = await getData('api/seasonal');
+  const recentlyUdated = await getData('api/latest-updates');
+
   return (
     <>
       {/* --------------- Most Popular ---------------------- */}
       <h3 className="text-xl font-bold mb-2">Most Popular</h3>
       <Crousel autoPlay>
-        {data.map(i => (
+        {popularData.map(i => (
           <Card
             key={i.id}
             {...{
@@ -35,8 +35,8 @@ async function Home() {
 
       {/* --------------- Latest Updeted ---------------------- */}
       <h3 className="text-xl font-bold my-2">Latest Updeted</h3>
-      <Crousel autoPlay>
-        {data.map(i => (
+      <Crousel>
+        {recentlyUdated.map(i => (
           <Card
             key={i}
             {...{
@@ -46,9 +46,9 @@ async function Home() {
               author: i.relationships?.filter(t => t.type === 'author')?.[0]?.attributes?.name,
               imageUrl: i.relationships?.find(t => t.type === 'cover_art')?.attributes?.fileName,
               id: i.id,
-              time: '2023-10-19T07:29:30+00:00',
-              volume: 10,
-              chapter: 12,
+              time: i.attributes?.updatedAt,
+              volume: i?.attributes?.lastVolume,
+              chapter: i?.attributes?.lastChapter,
               height: '400px',
             }}
           />
@@ -58,7 +58,7 @@ async function Home() {
       {/* --------------- Seasonal ---------------------- */}
       <h3 className="text-xl font-bold my-2">Seasonal Update</h3>
       <Crousel autoPlay>
-        {data.map(i => (
+        {seasonalData.map(i => (
           <Card
             key={i}
             {...{
