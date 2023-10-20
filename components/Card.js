@@ -23,7 +23,7 @@ const genereColor = {
 function Card({ title, desc, author, genere, time, volume, chapter, height = '200px', id, imageUrl }) {
   return (
     <Link href={`manga/${id}`}>
-    <div className={`relative flex bg-gray-800 h-full text-white p-3 mx-3 rounded-xl justify-between`}>
+    <div className={`relative flex bg-gray-800 h-full text-white p-3 mx-3 rounded-xl`}>
       <div className="aspect-[7/8] object-cover relative h-full">
         <Image className="pointer-events-none select-none object-cover" src={`${process.env.IMAGE_URL}/covers/${id}/${imageUrl}`} alt="Cover Image" fill loading="lazy" />
       </div>
