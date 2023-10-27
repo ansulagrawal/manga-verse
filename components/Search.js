@@ -16,12 +16,12 @@ function Search() {
   const [visible, setVisible] = useState(false);
   const inputChange = e => {
     setText(e.target.value);
-    // axios
-    //   .get('/api/search', { params: { title: e.target.value } })
-    //   .then(a => {
-    //     setResults(a?.data?.data);
-    //   })
-    //   .catch(e => console.log(e));
+    axios
+      .get('/api/search', { params: { title: e.target.value } })
+      .then(a => {
+        setResults(a?.data?.data);
+      })
+      .catch(e => console.log(e));
   };
   return (
     <div className="w-full relative flex items-center gap-8 border border-gray-400 border-1 rounded-full py-2 text-color shadow sm:w-[400px] sm:gap-6 md:px-8 ease-in-out duration-300">
