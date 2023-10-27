@@ -1,9 +1,10 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-
+import image from '../public/default.jpeg';
 dayjs.extend(relativeTime);
 
 const genereColor = {
@@ -28,11 +29,20 @@ const genereColor = {
 };
 
 function Card({ title, desc, author, genere, time, volume, chapter, height = '200px', id, imageUrl }) {
+  const [imageLoaded, setImageLoaded] = useState(true);
+
   return (
     <Link href={`manga/${id}`}>
       <div className={`relative flex bg-gray-800 h-full text-white p-3 mx-3 rounded-xl`}>
         <div className="aspect-[7/8] object-cover relative h-full">
-          <Image className="pointer-events-none select-none object-cover" src={`${process.env.IMAGE_URL}/covers/${id}/${imageUrl}.256.jpg`} alt="Cover Image" fill loading="lazy" />
+          <Image
+            onError={() => setImageLoaded(false)}
+            className="pointer-events-none select-none object-cover"
+            src={imageLoaded ? `${process.env.NEXT_PUBLIC_IMAGE_URL}/covers/${id}/${imageUrl}.256.jpg` : image}
+            alt="Cover Image"
+            fill
+            loading="lazy"
+          />
         </div>
 
         <div className="pl-5">
@@ -51,7 +61,9 @@ function Card({ title, desc, author, genere, time, volume, chapter, height = '20
 
           <div className="flex flex-wrap gap-1 mb-5">
             {genere?.slice(0, 4)?.map(g => (
-              <div className={`text-xs inline-flex items-center font-bold leading-sm uppercase px-3  py-1 rounded-full ${genereColor[g.toLowerCase()] || genereColor.default}`} key={g}>
+              <div
+                className={`text-xs inline-flex items-center font-bold leading-sm uppercase px-3  py-1 rounded-full ${genereColor[g.toLowerCase()] || genereColor.default}`}
+                key={g}>
                 {g}
               </div>
             ))}

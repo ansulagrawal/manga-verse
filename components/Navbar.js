@@ -1,5 +1,6 @@
 import React from 'react';
 import Select from './Select';
+import Search from './Search';
 
 function Navbar() {
   const options = (size) => Array.from({ length: size }, (_, i) => `${i + 1} option`);
@@ -11,6 +12,7 @@ function Navbar() {
       <Select title="Type" options={options(15)} />
       <Select title="Type" options={options(25)} />
       <Select title="Type" options={options(30)} />
+      <Search />
     </div>
   );
 }
