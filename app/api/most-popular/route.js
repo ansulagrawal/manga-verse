@@ -10,7 +10,7 @@ export async function GET() {
   const date = dayjs().subtract(1, 'M').utc().format('YYYY-MM-DDTHH:mm:ss');
 
   return await axios
-    .get(`${process.env.MANGA_URL}/manga?hasAvailableChapters=true&createdAtSince=${date}&limit=20&order[followedCount]=desc&contentRating[]=safe&contentRating[]=suggestive&includes[]=cover_art&includes[]=author`)
+    .get(`${process.env.MANGA_URL}/manga?hasAvailableChapters=true&createdAtSince=${date}&limit=15&order[followedCount]=desc&contentRating[]=safe&contentRating[]=suggestive&includes[]=cover_art&includes[]=author`)
     .then(res => {
       return NextResponse.json({ data: res?.data?.data || [] }, { status: 200 });
     })

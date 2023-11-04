@@ -1,28 +1,30 @@
-import Card from '@/components/Card';
+import Card from '@/components/MainCards';
 import React from 'react';
 import Crousel from '@/components/Crousel';
-import axios from 'axios';
+import getData from '@/helpers/api';
+import Link from 'next/link';
 
 async function Home() {
-  const getData = async url => {
-    const popularRes = await axios.get(`${process.env.BASE_URL}/${url}`);
-    return popularRes?.data?.data || [];
-  };
-
   const popularData = await getData('api/most-popular');
   const seasonalData = await getData('api/seasonal');
   const recentlyUdated = await getData('api/latest-updates');
 
   return (
-    <>
+    <section className="px-4">
       {/* --------------- Most Popular ---------------------- */}
-      <h3 className="text-xl font-bold mb-2">Most Popular</h3>
-      <Crousel autoPlay>
+      <div className="flex px-4 flex-wrap justify-between place-items-center my-2">
+        <h3 className="md:text-3xl font-bold text-white ">Most Popular</h3>
+        <Link href="#" className='text-white select-none cursor-pointer text-xl'>show more &gt;</Link>
+      </div>
+      <Crousel autoPlay showDots keyBoardControl>
         {popularData.map(i => (
           <Card
             key={i.id}
             {...{
-              title: i?.attributes?.title?.en || i?.attributes?.title[Object.keys(popularData?.[0]?.attributes?.title)?.[0]] || i?.attributes?.altTitles?.[0]?.[Object.keys(i?.attributes?.altTitles?.[0])?.[0]],
+              title:
+                i?.attributes?.title?.en ||
+                i?.attributes?.title[Object.keys(popularData?.[0]?.attributes?.title)?.[0]] ||
+                i?.attributes?.altTitles?.[0]?.[Object.keys(i?.attributes?.altTitles?.[0])?.[0]],
               desc: i?.attributes?.description?.en,
               genere: i.attributes.tags.filter(tag => tag.attributes.group === 'genre').map(tag => tag.attributes.name.en),
               author: i.relationships?.find(t => t.type === 'author')?.attributes?.name,
@@ -34,13 +36,19 @@ async function Home() {
       </Crousel>
 
       {/* --------------- Latest Updeted ---------------------- */}
-      <h3 className="text-xl font-bold my-2">Latest Updeted</h3>
-      <Crousel autoPlay>
+      <div className="flex px-4 flex-wrap align-middle justify-between place-items-center mb-2 mt-20">
+        <h3 className="md:text-3xl font-bold text-white ">Latest Updeted</h3>
+        <Link href="#" className='text-white select-none cursor-pointer text-xl'>show more &gt;</Link>
+      </div>
+      <Crousel autoPlay showDots keyBoardControl>
         {recentlyUdated.map(i => (
           <Card
             key={i}
             {...{
-              title: i?.attributes?.title?.en || i?.attributes?.title[Object.keys(popularData?.[0]?.attributes?.title)?.[0]] || i?.attributes?.altTitles?.[0]?.[Object.keys(i?.attributes?.altTitles?.[0])?.[0]],
+              title:
+                i?.attributes?.title?.en ||
+                i?.attributes?.title[Object.keys(popularData?.[0]?.attributes?.title)?.[0]] ||
+                i?.attributes?.altTitles?.[0]?.[Object.keys(i?.attributes?.altTitles?.[0])?.[0]],
               desc: i?.attributes?.description?.en,
               genere: i.attributes.tags.filter(tag => tag.attributes.group === 'genre').map(tag => tag.attributes.name.en),
               author: i.relationships?.find(t => t.type === 'author')?.attributes?.name,
@@ -56,13 +64,19 @@ async function Home() {
       </Crousel>
 
       {/* --------------- Seasonal ---------------------- */}
-      <h3 className="text-xl font-bold my-2">Seasonal Update</h3>
-      <Crousel autoPlay>
+      <div className="flex px-4 flex-wrap align-middle justify-between place-items-center mb-2 mt-20">
+        <h3 className="md:text-3xl font-bold text-white">Seasonal Update</h3>
+        <Link href="#" className='text-white select-none cursor-pointer text-xl'>show more &gt;</Link>
+      </div>
+      <Crousel autoPlay showDots keyBoardControl>
         {seasonalData.map(i => (
           <Card
             key={i}
             {...{
-              title: i?.attributes?.title?.en || i?.attributes?.title[Object.keys(popularData?.[0]?.attributes?.title)?.[0]] || i?.attributes?.altTitles?.[0]?.[Object.keys(i?.attributes?.altTitles?.[0])?.[0]],
+              title:
+                i?.attributes?.title?.en ||
+                i?.attributes?.title[Object.keys(popularData?.[0]?.attributes?.title)?.[0]] ||
+                i?.attributes?.altTitles?.[0]?.[Object.keys(i?.attributes?.altTitles?.[0])?.[0]],
               desc: i?.attributes?.description?.en,
               genere: i.attributes.tags.filter(tag => tag.attributes.group === 'genre').map(tag => tag.attributes.name.en),
               author: i.relationships?.find(t => t.type === 'author')?.attributes?.name,
@@ -74,7 +88,7 @@ async function Home() {
           />
         ))}
       </Crousel>
-    </>
+    </section>
   );
 }
 

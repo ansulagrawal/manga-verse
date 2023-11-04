@@ -37,3 +37,10 @@ body::-webkit-scrollbar-thumb {
 .break-word {
   word-break: break-word;
 }
+
+.react-multi-carousel-dot--active button {
+  background-color: white !important;
+}
+.react-multi-carousel-dot button {
+  border-color: white !important;
+}
