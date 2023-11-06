@@ -5,28 +5,8 @@ import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import image from '../public/default.jpeg';
+import genereColor from '@/config/genereColor';
 dayjs.extend(relativeTime);
-
-const genereColor = {
-  default: 'bg-gray-400 text-gray-700',
-  romance: 'bg-red-200 text-red-700',
-  comedy: 'bg-orange-200 text-orange-700',
-  'slice of life': 'bg-green-200 text-green-700',
-  drama: 'bg-cyan-800 text-cyan-200',
-  action: 'bg-blue-200 text-blue-700',
-  adventure: 'bg-purple-200 text-purple-700',
-  fantasy: 'bg-pink-200 text-pink-700',
-  isekai: 'bg-yellow-200 text-yellow-700',
-  "girls' love": 'bg-amber-400 text-amber-800',
-  sports: 'bg-blue-400 text-blue-800',
-  crime: 'bg-red-400 text-red-800',
-  psychological: 'bg-white text-black',
-  horror: 'bg-rose-800 text-rose-200',
-  'sci-fi': 'bg-emerald-400 text-emerald-700',
-  historical: 'bg-lime-400 text-lime-700',
-  thriller: 'bg-violet-800 text-violet-200',
-  superhero: 'bg-fuchsia-800 text-fuchsia-200',
-};
 
 function Card({ title, desc, author, genere, time, volume, chapter, id, imageUrl }) {
   const [imageLoaded, setImageLoaded] = useState(true);

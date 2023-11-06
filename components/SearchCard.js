@@ -6,34 +6,14 @@ import image from '../public/default.jpeg';
 import starImage from '../public/star.png';
 import followImage from '../public/bookmark.png';
 import commentImage from '../public/comment.png';
-
-const genereColor = {
-  default: 'bg-gray-400 text-gray-700',
-  romance: 'bg-red-200 text-red-700',
-  comedy: 'bg-orange-200 text-orange-700',
-  'slice of life': 'bg-green-200 text-green-700',
-  drama: 'bg-cyan-800 text-cyan-200',
-  action: 'bg-blue-200 text-blue-700',
-  adventure: 'bg-purple-200 text-purple-700',
-  fantasy: 'bg-pink-200 text-pink-700',
-  isekai: 'bg-yellow-200 text-yellow-700',
-  "girls' love": 'bg-amber-400 text-amber-800',
-  sports: 'bg-blue-400 text-blue-800',
-  crime: 'bg-red-400 text-red-800',
-  psychological: 'bg-white text-black',
-  horror: 'bg-rose-800 text-rose-200',
-  'sci-fi': 'bg-emerald-400 text-emerald-700',
-  historical: 'bg-lime-400 text-lime-700',
-  thriller: 'bg-violet-800 text-violet-200',
-  superhero: 'bg-fuchsia-800 text-fuchsia-200',
-};
+import genereColor from '@/config/genereColor';
 
 function SearchCard({ title, genere, handleClick, author, id, imageUrl, rating, followCount, comments }) {
   const [imageLoaded, setImageLoaded] = useState(true);
 
   return (
-    <Link href={`manga/${id}`} onClick={handleClick}>
-      <div className={`relative flex bg-gray-800 group h-[180px] text-white p-3 hover:bg-slate-700 rounded-xl`}>
+    <Link href={`manga/${id}`}>
+      <div onClick={handleClick} className={`relative flex bg-gray-800 group h-[180px] text-white p-3 hover:bg-slate-700 rounded-xl`}>
         <div className="aspect-[7/8] object-cover group-hover:brightness-[0.6] relative h-full">
           <Image
             onError={() => setImageLoaded(false)}
