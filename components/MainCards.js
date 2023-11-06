@@ -33,8 +33,8 @@ function Card({ title, desc, author, genere, time, volume, chapter, id, imageUrl
 
   return (
     <Link href={`manga/${id}`}>
-      <div className={`relative bg-gray-800 h-[400px] text-white p-3 mx-3`}>
-        <div className="w-full absolute top-0 brightness-[0.35] rounded-xl left-0 z-0 h-full ">
+      <div className={`relative bg-gray-800 h-[400px] group text-white p-3 mx-3`}>
+        <div className="w-full absolute top-0 brightness-[0.35] group-hover:brightness-[0.3] rounded-xl left-0 z-0 h-full ">
           <Image
             onError={() => setImageLoaded(false)}
             className="pointer-events-none select-none object-cover rounded-xl object-[25%_25%]"
@@ -69,8 +69,8 @@ function Card({ title, desc, author, genere, time, volume, chapter, id, imageUrl
             ))}
           </div>
 
-          {time && <div className="absolute bottom-1 text-gray-300 right-5">Updeted: {dayjs(time).fromNow()}</div>}
         </div>
+          {time && <div className="absolute z-10 bottom-1 text-gray-300 right-5">Updeted: {dayjs(time).fromNow()}</div>}
       </div>
     </Link>
   );
