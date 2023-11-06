@@ -2,7 +2,7 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import SearchCard from './SearchCard';
-import Loading from './Loading';
+import Loading from './SearchCardLoading';
 
 function MagnifyingGlass({ className }) {
   return (
@@ -14,7 +14,6 @@ function MagnifyingGlass({ className }) {
 
 function Search() {
   const [results, setResults] = useState([]);
-  const [statistics, setStatistics] = useState([]);
   const [loading, setLoading] = useState(false);
   const [text, setText] = useState([]);
   const [visible, setVisible] = useState(false);
@@ -52,7 +51,7 @@ function Search() {
       <input className="w-full bg-transparent focus:outline-none" onFocus={() => setVisible(true)} value={text} placeholder="Search for a manga..." onChange={inputChange} />
       <MagnifyingGlass className="w-[25px] h-[25px]" />
       {visible && results?.length > 0 && text?.length > 0 && (
-        <div className="absolute bottom-0 flex flex-col gap-3 overflow-auto left-0 translate-y-[101%] bg-gray-600 min-h-fit max-h-[700px] w-[700px] rounded-xl p-3 manga-search-results">
+        <div className="absolute bottom-0 flex flex-col gap-1 overflow-auto left-0 translate-y-[101%] bg-gray-600 min-h-fit max-h-[700px] w-[700px] rounded-xl p-1 manga-search-results">
           <>
             {loading ? (
               <Loading />
