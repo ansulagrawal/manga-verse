@@ -26,22 +26,7 @@ function Search() {
       .get('/api/search', { params: { title: e.target.value } })
       .then(res => {
         setResults(res?.data?.data);
-        let query = '';
-
-        res?.data?.data.forEach((item, index) => {
-          if (index === 0) {
-            query += `manga[]=${encodeURIComponent(item?.id)}`;
-          } else {
-            query += `&manga[]=${encodeURIComponent(item?.id)}`;
-          }
-        });
-        axios
-          .get(`/api/statistics?${query}`)
-          .then(a => {
-            setStatistics(a?.data?.data);
-            setLoading(false);
-          })
-          .catch(e => console.log(e));
+        setLoading(false);
       })
       .catch(e => console.log(e));
   };
@@ -79,11 +64,7 @@ function Search() {
                     key={index}
                     {...{
                       title: i?.attributes?.title?.en || i?.attributes?.altTitles?.[0]?.[Object.keys(i?.attributes?.altTitles?.[0])?.[0]],
-                      comments: statistics[i?.id]?.comments?.repliesCount,
-                      followCount: statistics[i?.id]?.follows,
-                      rating: statistics[i?.id]?.rating?.average,
                       author: i.relationships?.find(t => t.type === 'author')?.attributes?.name,
-                      genere: i.attributes.tags.filter(tag => tag.attributes.group === 'genre').map(tag => tag.attributes.name.en),
                       imageUrl: i.relationships?.find(t => t.type === 'cover_art')?.attributes?.fileName,
                       id: i.id,
                     }}
