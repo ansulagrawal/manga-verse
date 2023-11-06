@@ -35,13 +35,13 @@ function Search() {
             query += `&manga[]=${encodeURIComponent(item?.id)}`;
           }
         });
-        // axios
-        //   .get(`/api/statistics?${query}`)
-        //   .then(a => {
-        //     setStatistics(a?.data?.data);
-        //     setLoading(false);
-        //   })
-        //   .catch(e => console.log(e));
+        axios
+          .get(`/api/statistics?${query}`)
+          .then(a => {
+            setStatistics(a?.data?.data);
+            setLoading(false);
+          })
+          .catch(e => console.log(e));
       })
       .catch(e => console.log(e));
   };
