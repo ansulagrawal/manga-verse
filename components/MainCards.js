@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import image from '../public/default.jpeg';
-import genereColor from '@/config/genereColor';
+import { genereColor } from '@/config/default';
 dayjs.extend(relativeTime);
 
 function Card({ title, desc, author, genere, time, volume, chapter, id, imageUrl }) {
@@ -13,11 +13,11 @@ function Card({ title, desc, author, genere, time, volume, chapter, id, imageUrl
 
   return (
     <Link href={`manga/${id}`}>
-      <div className={`relative bg-gray-800 h-[400px] group text-white p-3 mx-3`}>
-        <div className="w-full absolute top-0 brightness-[0.35] group-hover:brightness-[0.3] rounded-xl left-0 z-0 h-full ">
+      <div className={`relative bg-gray-800 h-[400px] rounded-3xl group text-white p-3 mx-3`}>
+        <div className="w-full absolute top-0 brightness-[0.35] group-hover:brightness-[0.3] rounded-3xl left-0 z-0 h-full ">
           <Image
             onError={() => setImageLoaded(false)}
-            className="pointer-events-none select-none object-cover rounded-xl object-[25%_25%]"
+            className="pointer-events-none select-none object-cover rounded-3xl object-[25%_25%]"
             src={imageLoaded ? `${process.env.NEXT_PUBLIC_IMAGE_URL}/covers/${id}/${imageUrl}.256.jpg` : image}
             alt="Cover Image"
             fill
@@ -48,9 +48,8 @@ function Card({ title, desc, author, genere, time, volume, chapter, id, imageUrl
               </div>
             ))}
           </div>
-
         </div>
-          {time && <div className="absolute z-10 bottom-1 text-gray-300 right-5">Updeted: {dayjs(time).fromNow()}</div>}
+        {time && <div className="absolute z-10 bottom-1 text-gray-300 right-5">Updeted: {dayjs(time).fromNow()}</div>}
       </div>
     </Link>
   );
