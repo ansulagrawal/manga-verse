@@ -6,10 +6,8 @@ import Link from 'next/link';
 
 async function Home() {
   const popularData = await getData('api/most-popular');
-  const seasonalData = await getData('api/most-popular');
-  const recentlyUdated = await getData('api/most-popular');
-  // const seasonalData = await getData('api/seasonal');
-  // const recentlyUdated = await getData('api/latest-updates');
+  const seasonalData = await getData('api/seasonal-updates');
+  const recentlyUdated = await getData('api/latest-updated');
 
   return (
     <section className="px-4">
