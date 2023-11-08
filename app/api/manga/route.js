@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { NextResponse } from 'next/server';
 
-export async function GET(req) {
-  const { searchParams } = new URL(req.url);
-  const id = searchParams.get('id');
+export async function GET() {
   return await axios
-    .get(`${process.env.MANGA_URL}/manga/${id}?includes[]=artist&includes[]=author&includes[]=cover_art`)
+    .get(
+      `${process.env.MANGA_URL}/manga?limit=15&includes[]=cover_art&includes[]=author&order[latestUploadedChapter]=desc&hasAvailableChapters=true`
+    )
     .then(res => {
       return NextResponse.json({ data: res?.data?.data || [] }, { status: 200 });
     })
