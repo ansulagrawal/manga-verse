@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React from 'react';
 
 async function CategoryDisplay({ params }) {
-  const data = await getData(`/api/${params?.category}`);
+  const data = await getData(`/api/${params?.category}?limit=50`);
   console.log(data);
   return (
     <div className="px-4">
@@ -28,6 +28,7 @@ async function CategoryDisplay({ params }) {
               author: i.relationships?.find(t => t.type === 'author')?.attributes?.name,
               imageUrl: i.relationships?.find(t => t.type === 'cover_art')?.attributes?.fileName,
               id: i.id,
+              time: i.attributes?.updatedAt,
             }}
           />
         ))}
