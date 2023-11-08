@@ -1,8 +1,8 @@
 'use client';
-import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import SearchCard from './SearchCard';
 import Loading from './SearchCardLoading';
+import getData from '@/helpers/api';
 
 function MagnifyingGlass({ className }) {
   return (
@@ -18,16 +18,12 @@ function Search() {
   const [text, setText] = useState([]);
   const [visible, setVisible] = useState(false);
   const searchRef = useRef(null);
-  const inputChange = e => {
+  const inputChange = async e => {
     setText(e.target.value);
     setLoading(true);
-    axios
-      .get('/api/search', { params: { title: e.target.value } })
-      .then(res => {
-        setResults(res?.data?.data);
-        setLoading(false);
-      })
-      .catch(e => console.log(e));
+    const popularData = await getData('/api/search', { title: e.target.value });
+    setResults(popularData)
+    setLoading(false)
   };
 
   const handleDocumentClick = event => {
