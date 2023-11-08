@@ -5,10 +5,9 @@ import React from 'react';
 
 async function CategoryDisplay({ params }) {
   const data = await getData(`/api/${params?.category}?limit=50`);
-  console.log(data);
   return (
     <div className="px-4">
-      <div className="text-white text-4xl relative font-bold m-5 flex place-items-center gap-3 justify-center">
+      <div className="text-white text-4xl relative font-bold mx-5 my-10 flex place-items-center gap-3 justify-center">
         <Link
           href="/"
           className="p-3 bg-slate-600 absolute hover:text-cyan-400 rounded-full flex place-items-center gap-3 h-[40px] w-[40px] overflow-hidden hover:w-auto left-0">

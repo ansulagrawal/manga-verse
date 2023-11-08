@@ -6,7 +6,7 @@ async function Manga({ params }) {
   const detail = await getData(`api/manga/${params?.id}`);
   const imageUrl = detail.relationships?.find(t => t.type === 'cover_art')?.attributes?.fileName;
   return (
-    <div>
+    <section>
       <div className="aspect-[7/8] object-cover relative h-[400px]">
         <Image
           className="pointer-events-none select-none object-cover shadow-[0px_0px_10px_10px_gray]"
@@ -16,7 +16,7 @@ async function Manga({ params }) {
           loading="lazy"
         />
       </div>
-    </div>
+    </section>
   );
 }
 
