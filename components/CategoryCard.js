@@ -24,7 +24,7 @@ function Card({ title, desc, author, genere, time, volume, chapter, id, imageUrl
             loading="lazy"
           />
         </div>
-        <div className="z-10 w-full left-0 top-0 right-0 bottom-0 bg-black group-hover/card:translate-y-[0%] transition duration-500 delay-10000 opacity-80 rounded-3xl p-5 h-full absolute translate-y-[77%]">
+        <div className="z-10 w-full left-0 top-0 right-0 bottom-0 bg-black group-hover/card:translate-y-[0%] transition duration-500 delay-10000 opacity-80 rounded-3xl p-5 h-full absolute translate-y-[79%]">
           <b className="text-xl break-all line-clamp-1">{title}</b>
 
           <p className="text-lg text-gray-200 mb-2">Author: {author}</p>
