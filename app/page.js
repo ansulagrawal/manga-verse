@@ -15,7 +15,7 @@ async function Home() {
       <div className="relative pb-8 group">
         <div className="flex px-4 flex-wrap justify-between place-items-center my-2">
           <h3 className="md:text-3xl font-bold text-white ">Most Popular</h3>
-          <Link href="/most-popular" className="text-white select-none cursor-pointer text-xl hidden group-hover:block">
+          <Link href="/most-popular" className="text-white select-none cursor-pointer text-xl hidden group-hover:block hover:text-cyan-400">
             show more &gt;
           </Link>
         </div>
@@ -43,7 +43,7 @@ async function Home() {
       <div className="relative pb-8 group">
         <div className="flex px-4 flex-wrap align-middle justify-between place-items-center mb-2 mt-20">
           <h3 className="md:text-3xl font-bold text-white ">Latest Updeted</h3>
-          <Link href="/latest-updated" className="text-white select-none cursor-pointer text-xl hidden group-hover:block">
+          <Link href="/latest-updated" className="text-white select-none cursor-pointer text-xl hidden group-hover:block hover:text-cyan-400">
             show more &gt;
           </Link>
         </div>
@@ -74,7 +74,7 @@ async function Home() {
       <div className="relative pb-8 group">
         <div className="flex px-4 flex-wrap align-middle justify-between place-items-center mb-2 mt-20">
           <h3 className="md:text-3xl font-bold text-white">Seasonal Updates</h3>
-          <Link href="/seasonal-updates" className="text-white select-none cursor-pointer text-xl hidden group-hover:block">
+          <Link href="/seasonal-updates" className="text-white select-none cursor-pointer text-xl hidden group-hover:block hover:text-cyan-400">
             show more &gt;
           </Link>
         </div>
