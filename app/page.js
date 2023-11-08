@@ -6,16 +6,18 @@ import Link from 'next/link';
 
 async function Home() {
   const popularData = await getData('api/most-popular');
-  const seasonalData = await getData('api/seasonal');
-  const recentlyUdated = await getData('api/latest-updates');
+  const seasonalData = await getData('api/most-popular');
+  const recentlyUdated = await getData('api/most-popular');
+  // const seasonalData = await getData('api/seasonal');
+  // const recentlyUdated = await getData('api/latest-updates');
 
   return (
     <section className="px-4">
       {/* --------------- Most Popular ---------------------- */}
-      <div className="relative pb-8">
+      <div className="relative pb-8 group">
         <div className="flex px-4 flex-wrap justify-between place-items-center my-2">
           <h3 className="md:text-3xl font-bold text-white ">Most Popular</h3>
-          <Link href="#" className="text-white select-none cursor-pointer text-xl">
+          <Link href="/most-popular" className="text-white select-none cursor-pointer text-xl hidden group-hover:block">
             show more &gt;
           </Link>
         </div>
@@ -40,10 +42,10 @@ async function Home() {
       </div>
 
       {/* --------------- Latest Updeted ---------------------- */}
-      <div className="relative pb-8">
+      <div className="relative pb-8 group">
         <div className="flex px-4 flex-wrap align-middle justify-between place-items-center mb-2 mt-20">
           <h3 className="md:text-3xl font-bold text-white ">Latest Updeted</h3>
-          <Link href="#" className="text-white select-none cursor-pointer text-xl">
+          <Link href="/latest-updated" className="text-white select-none cursor-pointer text-xl hidden group-hover:block">
             show more &gt;
           </Link>
         </div>
@@ -71,10 +73,10 @@ async function Home() {
       </div>
 
       {/* --------------- Seasonal ---------------------- */}
-      <div className="relative pb-8">
+      <div className="relative pb-8 group">
         <div className="flex px-4 flex-wrap align-middle justify-between place-items-center mb-2 mt-20">
-          <h3 className="md:text-3xl font-bold text-white">Seasonal Update</h3>
-          <Link href="#" className="text-white select-none cursor-pointer text-xl">
+          <h3 className="md:text-3xl font-bold text-white">Seasonal Updates</h3>
+          <Link href="/seasonal-updates" className="text-white select-none cursor-pointer text-xl hidden group-hover:block">
             show more &gt;
           </Link>
         </div>
