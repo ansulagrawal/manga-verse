@@ -14,7 +14,7 @@ function Card({ title, desc, author, genere, time, volume, chapter, id, imageUrl
   return (
     <Link href={`manga/${id}`} shallow prefetch>
       <div className={`relative bg-gray-800 h-[400px] aspect-[3/4] overflow-hidden rounded-3xl group/card text-white p-3 mx-3`}>
-        <div className="w-full absolute top-0 rounded-3xl left-0 brightness-60 z-0 h-full ">
+        <div className="w-full absolute top-0 rounded-3xl left-0 z-0 h-full ">
           <Image
             onError={() => setImageLoaded(false)}
             className="pointer-events-none select-none object-cover rounded-3xl object-[25%_25%]"
@@ -24,11 +24,7 @@ function Card({ title, desc, author, genere, time, volume, chapter, id, imageUrl
             loading="lazy"
           />
         </div>
-
-        <div className="z-10 w-full left-0 top-0 right-0 bottom-0 p-5 h-full absolute group-hover/card:hidden">
-          <b className="text-3xl break-all line-clamp-1">{title}</b>
-        </div>
-        <div className="z-10 w-full left-0 top-0 right-0 bottom-0 bg-black group-hover/card:translate-y-[0%] transition duration-150 delay-150 opacity-80 rounded-3xl p-5 h-full absolute translate-y-[100%]">
+        <div className="z-10 w-full left-0 top-0 right-0 bottom-0 bg-black group-hover/card:translate-y-[0%] transition duration-500 delay-10000 opacity-80 rounded-3xl p-5 h-full absolute translate-y-[77%]">
           <b className="text-3xl break-all line-clamp-1">{title}</b>
 
           <p className="text-lg text-gray-200 mb-2">Author: {author}</p>

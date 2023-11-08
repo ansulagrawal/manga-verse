@@ -16,7 +16,7 @@ async function CategoryDisplay({ params }) {
         </Link>
         <div className="capitalize">{params?.category?.split('-').join(' ')}</div>
       </div>
-      <div className="grid grid-cols-6 gap-y-6">
+      <div class="flex justify-center flex-wrap gap-y-7">
         {data.map(i => (
           <Card
             key={i.id}
