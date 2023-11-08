@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server';
 
 dayjs.extend(utc);
 
-export async function GET() {
+export async function GET(req) {
   const { searchParams } = new URL(req.url);
   const limit = searchParams.get('limit') || 15;
   // Date Format: 2023-09-19T10:24:23
