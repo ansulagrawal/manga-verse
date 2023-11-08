@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 
 async function Manga({ params }) {
-  const detail = await getData('api/manga-detail', { id: params?.id });
+  const detail = await getData(`api/manga/${params?.id}`);
   const imageUrl = detail.relationships?.find(t => t.type === 'cover_art')?.attributes?.fileName;
   return (
     <div>
