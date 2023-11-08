@@ -13,7 +13,7 @@ const genereColor = {
   sports: 'bg-green-500 text-green-50',
   crime: 'bg-gray-600 text-gray-100',
   psychological: 'bg-stone-400 text-stone-800',
-  horror: 'bg-black text-red-500',
+  horror: 'bg-red-100 text-red-500',
   'sci-fi': 'bg-sky-600 text-sky-100',
   historical: 'bg-amber-700 text-amber-100',
   thriller: 'bg-violet-700 text-violet-100',

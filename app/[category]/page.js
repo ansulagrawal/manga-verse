@@ -1,4 +1,4 @@
-import Card from '@/components/MainCards';
+import Card from '@/components/CategoryCard';
 import getData from '@/helpers/api';
 import Link from 'next/link';
 import React from 'react';
@@ -16,7 +16,7 @@ async function CategoryDisplay({ params }) {
         </Link>
         <div className="capitalize">{params?.category?.split('-').join(' ')}</div>
       </div>
-      <div className="grid grid-cols-4 gap-y-6">
+      <div className="grid grid-cols-6 gap-y-6">
         {data.map(i => (
           <Card
             key={i.id}
@@ -27,7 +27,7 @@ async function CategoryDisplay({ params }) {
               author: i.relationships?.find(t => t.type === 'author')?.attributes?.name,
               imageUrl: i.relationships?.find(t => t.type === 'cover_art')?.attributes?.fileName,
               id: i.id,
-              time: i.attributes?.updatedAt,
+              ...(params?.category === 'latest-updated' ? {time: i.attributes?.updatedAt} : {}),
             }}
           />
         ))}
