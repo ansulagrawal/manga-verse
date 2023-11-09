@@ -35,7 +35,7 @@ async function Manga({ params }) {
             {detail?.attributes?.title?.en || detail?.attributes?.altTitles?.[0]?.[Object.keys(detail?.attributes?.altTitles?.[0])?.[0]]}
           </div>
           <div className="font-bold text-xl text-white">{detail.relationships?.find(t => t.type === 'author')?.attributes?.name}</div>
-          <div className="font-bold text-2xl text-white line-clamp-4">{detail?.attributes?.description?.en}</div>
+          <div className="font-bold text-2xl text-white">{detail?.attributes?.description?.en}</div>
           <div className="font-bold text-2xl text-white flex gap-5">
             <div className='flex place-items-center'>
               <Image alt="rating" src={StarIcon} className='w-8 h-8' />
