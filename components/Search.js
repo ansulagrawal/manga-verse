@@ -47,9 +47,9 @@ function Search() {
   return (
     <div
       ref={searchRef}
-      className="w-[400px] relative flex items-center gap-8 border border-gray-400 border-1 rounded-full py-2 text-color shadow sm:gap-6 px-8 ease-in-out duration-300">
-      <input className="w-full bg-transparent focus:outline-none" onFocus={() => setVisible(true)} value={text} placeholder="Search for a manga..." onChange={inputChange} />
+      className="w-[400px] relative flex items-center bg-slate-700 rounded-xl py-2 text-color shadow sm:gap-6 px-4 ease-in-out duration-300">
       <MagnifyingGlass className="w-[25px] h-[25px]" />
+      <input className="w-full bg-transparent focus:outline-none" onFocus={() => setVisible(true)} value={text} placeholder="Search for a manga..." onChange={inputChange} />
       {visible && results?.length > 0 && text?.length > 0 && (
         <div className="absolute bottom-0 flex flex-col gap-1 overflow-auto right-0 translate-y-[101%] bg-gray-600 min-h-fit max-h-[700px] w-[700px] rounded-xl p-1 manga-search-results">
           <>
