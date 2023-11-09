@@ -7,7 +7,7 @@ export async function GET(req) {
 
   return await axios
     .get(
-      `${process.env.MANGA_URL}/manga?limit=${limit}&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&order[createdAt]=desc&includes[]=cover_art&hasAvailableChapters=true`
+      `${process.env.MANGA_URL}/manga?limit=${limit}&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&order[createdAt]=desc&includes[]=cover_art&includes[]=author&hasAvailableChapters=true`
     )
     .then(res => {
       return NextResponse.json({ data: res?.data?.data || [] }, { status: 200 });
