@@ -13,18 +13,18 @@ function Card({ title, desc, author, genere, time, volume, chapter, id, imageUrl
 
   return (
     <Link href={`manga/${id}`} shallow prefetch>
-      <div className={`relative bg-gray-800 h-[400px] aspect-[3/4] overflow-hidden rounded-3xl group/card text-white p-3 mx-3`}>
-        <div className="w-full absolute top-0 rounded-3xl left-0 z-0 h-full ">
+      <div className={`relative bg-gray-800 h-[400px] aspect-[3/4] overflow-hidden rounded-xl group/card text-white p-3 mx-3`}>
+        <div className="w-full absolute top-0 rounded-xl left-0 z-0 h-full ">
           <Image
             onError={() => setImageLoaded(false)}
-            className="pointer-events-none select-none object-cover rounded-3xl object-[25%_25%]"
+            className="pointer-events-none select-none object-cover rounded-xl object-[25%_25%]"
             src={imageLoaded ? `${process.env.NEXT_PUBLIC_IMAGE_URL}/covers/${id}/${imageUrl}.256.jpg` : image}
             alt="Cover Image"
             fill
             loading="lazy"
           />
         </div>
-        <div className="z-10 w-full left-0 top-0 right-0 bottom-0 bg-black group-hover/card:translate-y-[0%] transition duration-500 delay-10000 opacity-80 rounded-3xl p-5 h-full absolute translate-y-[79%]">
+        <div className="z-10 w-full left-0 top-0 right-0 bottom-0 bg-black group-hover/card:translate-y-[0%] transition duration-500 delay-10000 opacity-80 rounded-xl p-5 h-full absolute translate-y-[79%]">
           <b className="text-xl break-all line-clamp-1">{title}</b>
 
           <p className="text-lg text-gray-200 mb-2">Author: {author}</p>
