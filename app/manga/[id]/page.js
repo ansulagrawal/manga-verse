@@ -38,7 +38,7 @@ async function Manga({ params }) {
           <div className="font-bold text-3xl text-white">
             {detail?.attributes?.altTitles?.find(obj => detail?.attributes?.originalLanguage in obj)?.[detail?.attributes?.originalLanguage]}
           </div>
-          <div className="font-bold text-xl text-white">{detail.relationships?.find(t => t.type === 'author')?.attributes?.name}</div>
+          <div className="font-bold text-xl text-white">{detail.relationships?.find(t => t.type === 'author')?.attributes?.name}, {detail.relationships?.find(t => t.type === 'artist')?.attributes?.name}</div>
           <div className="flex flex-wrap gap-1">
             {detail.attributes.tags
               .map(tag => tag.attributes.name.en)
