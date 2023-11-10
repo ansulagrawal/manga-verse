@@ -12,7 +12,7 @@ function Card({ title, desc, author, genere, time, volume, chapter, id, imageUrl
   const [imageLoaded, setImageLoaded] = useState(true);
 
   return (
-    <Link href={`manga/${id}`} shallow prefetch>
+    <Link href={`manga/${id}`}>
       <div className={`relative bg-gray-800 h-[400px] rounded-3xl group/card text-white p-3 mx-3`}>
         <div className="w-full absolute top-0 brightness-[0.35] group-hover/card:brightness-[0.2] rounded-3xl left-0 z-0 h-full ">
           <Image
