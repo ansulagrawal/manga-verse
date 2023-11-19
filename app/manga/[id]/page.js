@@ -15,14 +15,7 @@ async function Manga({ params: { id }, searchParams: { tab = 'chapter' } }) {
   const detail = await getData(`api/manga/${id}`);
   const statics = await getData(`api/statistics?manga[]=${id}`);
   const chapters = await getData(`api/chapters?id=${id}`);
-  const groupedChapters = chapters.reduce((acc, item) => {
-    const chapter = item.attributes.chapter;
-    if (!acc[chapter]) {
-      acc[chapter] = [];
-    }
-    acc[chapter].push(item);
-    return acc;
-  }, {});
+  const art = await getData(`api/manga/${id}/art`);
   const imageUrl = detail.relationships?.find(t => t.type === 'cover_art')?.attributes?.fileName;
   const author = detail.relationships?.find(t => t.type === 'author')?.attributes?.name;
   const artist = detail.relationships?.find(t => t.type === 'artist')?.attributes?.name;
@@ -99,7 +92,7 @@ async function Manga({ params: { id }, searchParams: { tab = 'chapter' } }) {
               Art
             </Link>
           </div>
-          <div className="text-white">{tab === 'chapter' ? <ChapterView data={groupedChapters} /> : <ArtView />}</div>
+          <div className="text-white">{tab === 'chapter' ? <ChapterView data={chapters} /> : <ArtView art={art} id={id} />}</div>
         </div>
       </div>
     </section>
