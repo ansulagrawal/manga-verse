@@ -8,7 +8,7 @@ function SearchCard({ title, handleClick, author, id, imageUrl }) {
   const [imageLoaded, setImageLoaded] = useState(true);
 
   return (
-    <Link href={`manga/${id}`}>
+    <Link href={`/manga/${id}`}>
       <div onClick={handleClick} className={`relative flex bg-gray-800 group h-[100px] text-white p-2 hover:bg-slate-700 rounded-xl`}>
         <div className="aspect-[7/8] object-cover group-hover:brightness-[0.6] relative h-full">
           <Image

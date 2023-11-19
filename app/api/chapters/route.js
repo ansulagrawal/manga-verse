@@ -30,7 +30,7 @@ export async function GET(req) {
           volume: key,
           chapters: Object.entries(chapters)
             .sort(([key1], [key2]) => (Number(key2) || 0) - (Number(key1) || 0))
-            .map(i => ({ chapter: i[0], data: i[1] })),
+            .map(i => ({ chapter: i[0], data: i[1][0] })),
         };
       }, {});
       return NextResponse.json({ data: response }, { status: 200 });
