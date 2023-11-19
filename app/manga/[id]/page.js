@@ -26,7 +26,6 @@ async function Manga({ params: { id }, searchParams: { tab = 'chapter' } }) {
   const imageUrl = detail.relationships?.find(t => t.type === 'cover_art')?.attributes?.fileName;
   const author = detail.relationships?.find(t => t.type === 'author')?.attributes?.name;
   const artist = detail.relationships?.find(t => t.type === 'artist')?.attributes?.name;
-  console.log(groupedChapters)
   return (
     <section>
       <div className="relative h-fit flex flex-col lg:flex-row p-5 gap-11">
@@ -100,19 +99,7 @@ async function Manga({ params: { id }, searchParams: { tab = 'chapter' } }) {
               Art
             </Link>
           </div>
-          <div className="text-white">
-            {tab === 'chapter' ? (
-              <>
-              <ChapterView data={groupedChapters} /> 
-              {/* {console.log(Object.entries(groupedChapters))} */}
-                {/* {Object.entries(groupedChapters)?.map(i => (
-                  <div key={i?.id}>{i?.attributes?.title}</div>
-                ))} */}
-              </>
-            ) : (
-              <ArtView />
-            )}
-          </div>
+          <div className="text-white">{tab === 'chapter' ? <ChapterView data={groupedChapters} /> : <ArtView />}</div>
         </div>
       </div>
     </section>

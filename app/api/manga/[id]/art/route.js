@@ -3,7 +3,6 @@ import { NextResponse } from 'next/server';
 
 export async function GET(req, { params }) {
   const id = params?.id;
-  console.log(id)
   return await axios
     .get(
       `${process.env.MANGA_URL}/cover?order[volume]=asc&manga[]=${id}&limit=100&offset=0`
