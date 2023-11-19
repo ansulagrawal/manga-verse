@@ -2,10 +2,11 @@ import React from 'react';
 
 function ChapterView({ data }) {
   return (
-    <div className="md:pr-10 md:py-6">
+    <div className="px-5 py-6">
       {data?.map(i => (
         <div key={i?.volume}>
-          <div className="text-center">{i?.volume}</div>
+          <div className="text-xl">{i?.volume}</div>
+          
         </div>
       ))}
       {/* {Object.entries(data).map(([key, value]) => {
