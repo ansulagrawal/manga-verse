@@ -47,3 +47,27 @@ body::-webkit-scrollbar-thumb {
 .react-multi-carousel-dot button {
   border-color: white !important;
 }
+
+.md-wrapper hr {
+  margin-block: 20px;
+}
+
+.md-wrapper strong {
+  font-weight: bolder;
+}
+.md-wrapper p {
+  margin-bottom: 20px;
+}
+
+.md-wrapper ul li:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.md-wrapper a {
+  color: cyan;
+  text-decoration: underline;
+}
+.md-wrapper ul {
+  margin-left: 40px;
+  list-style-type: circle;
+}

@@ -6,11 +6,14 @@ import BookmarkIcon from '../../../public/bookmark.png';
 import CommentIcon from '../../../public/comment.png';
 import formatCount from '@/helpers/number-formatter';
 import { genereColor } from '@/config/default';
+import Markdown from 'markdown-to-jsx';
 
 async function Manga({ params }) {
   const detail = await getData(`api/manga/${params?.id}`);
   const statics = await getData(`api/statistics?manga[]=${params?.id}`);
   const imageUrl = detail.relationships?.find(t => t.type === 'cover_art')?.attributes?.fileName;
+  const author = detail.relationships?.find(t => t.type === 'author')?.attributes?.name;
+  const artist = detail.relationships?.find(t => t.type === 'artist')?.attributes?.name;
   return (
     <section>
       <div className="relative h-fit flex flex-col lg:flex-row p-5 gap-11">
@@ -38,7 +41,10 @@ async function Manga({ params }) {
           <div className="font-bold text-3xl text-white">
             {detail?.attributes?.altTitles?.find(obj => detail?.attributes?.originalLanguage in obj)?.[detail?.attributes?.originalLanguage]}
           </div>
-          <div className="font-bold text-xl text-white">{detail.relationships?.find(t => t.type === 'author')?.attributes?.name}, {detail.relationships?.find(t => t.type === 'artist')?.attributes?.name}</div>
+          <div className="font-bold text-xl text-white">
+            {author ? `Author: ${author}` : ''}
+            {author !== artist && artist ? `, Artist: ${artist}` : ''}
+          </div>
           <div className="flex flex-wrap gap-1">
             {detail.attributes.tags
               .map(tag => tag.attributes.name.en)
@@ -68,11 +74,12 @@ async function Manga({ params }) {
       </div>
       <div className="m-10 flex flex-col gap-5">
         <div className="flex flex-col gap-5 ">
-          <div className="text-2xl text-white">{detail?.attributes?.description?.en}</div>
+          <div className="text-2xl text-white md-wrapper">
+            <Markdown>{detail?.attributes?.description?.en}</Markdown>
+          </div>
         </div>
         <div className="flex flex-col xl:flex-row">
-          <div className="xl:w-1/3 bg-slate-400 h-[500px]"></div>
-          <div className="xl:w-2/3 bg-slate-700 h-[500px]"></div>
+          <div className="w-full bg-slate-700 h-[500px]"></div>
         </div>
       </div>
     </section>
