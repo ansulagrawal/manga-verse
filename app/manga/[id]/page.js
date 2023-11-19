@@ -7,19 +7,32 @@ import CommentIcon from '../../../public/comment.png';
 import formatCount from '@/helpers/number-formatter';
 import { genereColor } from '@/config/default';
 import Markdown from 'markdown-to-jsx';
+import Link from 'next/link';
+import ChapterView from './chapterView';
+import ArtView from './artView';
 
-async function Manga({ params }) {
-  const detail = await getData(`api/manga/${params?.id}`);
-  const statics = await getData(`api/statistics?manga[]=${params?.id}`);
+async function Manga({ params: { id }, searchParams: { tab = 'chapter' } }) {
+  const detail = await getData(`api/manga/${id}`);
+  const statics = await getData(`api/statistics?manga[]=${id}`);
+  const chapters = await getData(`api/chapters?id=${id}`);
+  const groupedChapters = chapters.reduce((acc, item) => {
+    const chapter = item.attributes.chapter;
+    if (!acc[chapter]) {
+      acc[chapter] = [];
+    }
+    acc[chapter].push(item);
+    return acc;
+  }, {});
   const imageUrl = detail.relationships?.find(t => t.type === 'cover_art')?.attributes?.fileName;
   const author = detail.relationships?.find(t => t.type === 'author')?.attributes?.name;
   const artist = detail.relationships?.find(t => t.type === 'artist')?.attributes?.name;
+  console.log(groupedChapters)
   return (
     <section>
       <div className="relative h-fit flex flex-col lg:flex-row p-5 gap-11">
         <Image
           className="pointer-events-none select-none object-cover object-[25%_25%] opacity-10"
-          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/covers/${params?.id}/${imageUrl}`}
+          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/covers/${id}/${imageUrl}`}
           alt="Cover Image"
           fill
           loading="lazy"
@@ -27,7 +40,7 @@ async function Manga({ params }) {
         <div className="aspect-[3/4] max-w-[300px] relative object-cover h-[400px] rounded-xl">
           <Image
             className="pointer-events-none select-none object-cover rounded-xl"
-            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/covers/${params?.id}/${imageUrl}`}
+            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/covers/${id}/${imageUrl}`}
             alt="Cover Image"
             fill
             loading="lazy"
@@ -59,15 +72,15 @@ async function Manga({ params }) {
           <div className="font-bold text-lg text-white flex gap-5">
             <div className="flex place-items-center">
               <Image alt="rating" src={StarIcon} className="w-6 h-6" />
-              <span>{Number(statics?.[params?.id]?.rating?.average)?.toFixed(2)}</span>
+              <span>{Number(statics?.[id]?.rating?.average)?.toFixed(2)}</span>
             </div>
             <div className="flex place-items-center">
               <Image alt="follows" src={BookmarkIcon} className="w-6 h-6" />
-              <span>{formatCount(statics?.[params?.id]?.follows)}</span>
+              <span>{formatCount(statics?.[id]?.follows)}</span>
             </div>
             <div className="flex place-items-center">
               <Image alt="comment" src={CommentIcon} className="w-6 h-6" />
-              <span>{formatCount(statics?.[params?.id]?.comments?.repliesCount)}</span>
+              <span>{formatCount(statics?.[id]?.comments?.repliesCount)}</span>
             </div>
           </div>
         </div>
@@ -78,8 +91,28 @@ async function Manga({ params }) {
             <Markdown>{detail?.attributes?.description?.en}</Markdown>
           </div>
         </div>
-        <div className="flex flex-col xl:flex-row">
-          <div className="w-full bg-slate-700 h-[500px]"></div>
+        <div className="w-ful bg-slate-700 min-h-fit">
+          <div className="flex w-full p-1 gap-1 text-xl">
+            <Link href="?tab=chapter" scroll={false} className={`p-2 text-white cursor-pointer ${tab === 'chapter' ? 'border-solid border-b-2 border-slate-400' : ''}`}>
+              Chapters
+            </Link>
+            <Link href="?tab=art" scroll={false} className={`p-2 text-white cursor-pointer ${tab === 'art' ? 'border-solid border-b-2 border-slate-400' : ''}`}>
+              Art
+            </Link>
+          </div>
+          <div className="text-white">
+            {tab === 'chapter' ? (
+              <>
+              <ChapterView data={groupedChapters} /> 
+              {/* {console.log(Object.entries(groupedChapters))} */}
+                {/* {Object.entries(groupedChapters)?.map(i => (
+                  <div key={i?.id}>{i?.attributes?.title}</div>
+                ))} */}
+              </>
+            ) : (
+              <ArtView />
+            )}
+          </div>
         </div>
       </div>
     </section>

@@ -69,5 +69,5 @@ body::-webkit-scrollbar-thumb {
 }
 .md-wrapper ul {
   margin-left: 40px;
-  list-style-type: circle;
+  list-style-type: disc;
 }
