@@ -80,10 +80,10 @@ async function Manga({ params: { id }, searchParams: { tab = 'chapter' } }) {
       <div className="m-10 flex flex-col gap-5">
         <div className="flex flex-col gap-5 ">
           <div className="text-2xl text-white md-wrapper">
-            <Markdown>{detail?.attributes?.description?.en}</Markdown>
+            <Markdown>{detail?.attributes?.description?.en || ''}</Markdown>
           </div>
         </div>
-        <div className="w-ful bg-slate-700 min-h-fit">
+        <div className="w-full min-h-fit">
           <div className="flex w-full p-1 gap-1 text-xl">
             <Link href="?tab=chapter" scroll={false} className={`p-2 text-white cursor-pointer ${tab === 'chapter' ? 'border-solid border-b-2 border-slate-400' : ''}`}>
               Chapters

@@ -19,7 +19,7 @@ export async function GET(req) {
       }, {});
       const response = Object.entries(data).map(([key, volume]) => {
         const chapters = volume.reduce((chp, item) => {
-          const chapter = item.attributes.chapter || 'No Chapter';
+          const chapter = item.attributes.chapter || 'One Shot';
           if (!chp[chapter]) {
             chp[chapter] = [];
           }

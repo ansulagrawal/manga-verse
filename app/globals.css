@@ -19,22 +19,12 @@
   }
 }
 ::-webkit-scrollbar {
-  width: 15px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #3d3d3d;
   border-radius: 15px;
-}
-
-body {
-  scrollbar-width: none;
-  scrollbar-color: #020f1d transparent;
-}
-
-body::-webkit-scrollbar-thumb {
-  background: #010a14;
-  border-radius: 0px;
 }
 
 .break-word {
@@ -46,6 +36,10 @@ body::-webkit-scrollbar-thumb {
 }
 .react-multi-carousel-dot button {
   border-color: white !important;
+}
+
+.md-wrapper{
+  font-size: 20px;
 }
 
 .md-wrapper hr {

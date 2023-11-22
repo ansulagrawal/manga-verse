@@ -1,12 +1,39 @@
 import React from 'react';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import Link from 'next/link';
+import ISO6391 from 'iso-639-1';
+dayjs.extend(relativeTime);
 
 function ChapterView({ data }) {
   return (
-    <div className="px-5 py-6">
+    <div className="px-5 py-6 flex flex-col gap-5">
       {data?.map(i => (
         <div key={i?.volume}>
-          <div className="text-xl">{i?.volume}</div>
-          
+          <div className="text-2xl text-center mb-3">{i?.volume}</div>
+          <div className="flex flex-col gap-5">
+            {i?.chapters?.map(chapter => (
+              <div key={chapter} className="p-3 bg-slate-800 rounded-xl">
+                <div className="mb-3">Chapter: {chapter?.chapter}</div>
+                <div className="flex flex-col gap-2">
+                  {chapter?.data?.map(i => (
+                    <Link href="#" key={i?.id} className="bg-slate-700 rounded-lg p-3 group/chapter relative">
+                      <div className="flex justify-between place-items-center">
+                        <span className="group-hover/chapter:text-cyan-400 text-xl">{i?.attributes?.title || `Chapter: ${chapter?.chapter}`}</span>
+                        <div>
+                          <div>
+                            {ISO6391.getName(i?.attributes?.translatedLanguage?.split('-')?.[0])}
+                            {i?.attributes?.translatedLanguage?.split('-')?.[1] ? ` (${i?.attributes?.translatedLanguage?.split('-')?.[1]?.toUpperCase()})` : ''}
+                          </div>
+                          <div className="text-end">{dayjs(i?.attributes?.readableAt).fromNow()}</div>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       ))}
       {/* {Object.entries(data).map(([key, value]) => {
