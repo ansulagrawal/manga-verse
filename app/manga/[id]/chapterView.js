@@ -17,7 +17,7 @@ function ChapterView({ data }) {
                 <div className="mb-3">Chapter: {chapter?.chapter}</div>
                 <div className="flex flex-col gap-2">
                   {chapter?.data?.map(i => (
-                    <Link href="#" key={i?.id} className="bg-slate-700 rounded-lg p-3 group/chapter relative">
+                    <Link href={`/read/${i?.id}`} key={i?.id} className="bg-slate-700 rounded-lg p-3 group/chapter relative">
                       <div className="flex justify-between place-items-center">
                         <span className="group-hover/chapter:text-cyan-400 text-xl">{i?.attributes?.title || `Chapter: ${chapter?.chapter}`}</span>
                         <div>

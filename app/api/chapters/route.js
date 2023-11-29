@@ -4,9 +4,12 @@ import { NextResponse } from 'next/server';
 export async function GET(req) {
   const { searchParams } = new URL(req.url);
   const id = searchParams.get('id');
+  const limit = searchParams.get('limit') || 50;
+  const offset = searchParams.get('offset') || 0;
+
   return await axios
     .get(
-      `${process.env.MANGA_URL}/manga/${id}/feed?limit=96&includes[]=scanlation_group&includes[]=user&order[volume]=desc&order[chapter]=desc&offset=0&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&contentRating[]=pornographic`
+      `${process.env.MANGA_URL}/manga/${id}/feed?limit=${limit}&offset=${offset}&includes[]=scanlation_group&includes[]=user&order[volume]=desc&order[chapter]=desc&offset=0&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&contentRating[]=pornographic`
     )
     .then(async res => {
       const data = res?.data?.data?.reduce((acc, item) => {
