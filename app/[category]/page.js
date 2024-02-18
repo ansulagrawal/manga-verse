@@ -1,4 +1,5 @@
 import Card from '@/components/CategoryCard';
+import Pagination from '@/components/Pagination';
 import getData from '@/helpers/api';
 import Link from 'next/link';
 import React from 'react';
@@ -16,6 +17,7 @@ async function CategoryDisplay({ params }) {
         </Link>
         <div className="capitalize">{params?.category?.split('-').join(' ')}</div>
       </div>
+      <Pagination />
       <div class="flex justify-center flex-wrap gap-y-7">
         {data.map(i => (
           <Card
