@@ -7,6 +7,9 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
+* {
+  font-family: 'Poppins', sans-serif;
+}
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -16,24 +19,49 @@
   }
 }
 ::-webkit-scrollbar {
-  width: 0px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #3d3d3d;
-  border-radius: 0px;
-}
-
-body {
-  scrollbar-width: none; 
-  scrollbar-color: #020f1d transparent;
-}
-
-body::-webkit-scrollbar-thumb {
-  background: #010a14;
-  border-radius: 0px;
+  border-radius: 15px;
 }
 
 .break-word {
   word-break: break-word;
+}
+
+.react-multi-carousel-dot--active button {
+  background-color: white !important;
+}
+.react-multi-carousel-dot button {
+  border-color: white !important;
+}
+
+.md-wrapper{
+  font-size: 20px;
+}
+
+.md-wrapper hr {
+  margin-block: 20px;
+}
+
+.md-wrapper strong {
+  font-weight: bolder;
+}
+.md-wrapper p {
+  margin-bottom: 20px;
+}
+
+.md-wrapper ul li:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.md-wrapper a {
+  color: cyan;
+  text-decoration: underline;
+}
+.md-wrapper ul {
+  margin-left: 40px;
+  list-style-type: disc;
 }
